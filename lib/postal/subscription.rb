@@ -10,23 +10,16 @@ module Postal
     end
 
     def unsubscribe!
-      response = call :unsubscribe, unsubscribe_options
-      response.body[:unsubscribe_response][:return] == "1"
-    end
-
-    private
-
-    def unsubscribe_options
-      { message: {
-          SimpleMemberStructArrayIn: {
-            item: {
-              :MemberID => member_id,
-              :EmailAddress => member.email,
-              :ListName => list_name
-            }
+      response = call :unsubscribe, message: {
+        SimpleMemberStructArrayIn: {
+          item: {
+            MemberID: member_id,
+            EmailAddress: member.email,
+            ListName: list_name
           }
         }
       }
+      response.body[:unsubscribe_response][:return] == "1"
     end
 
   end

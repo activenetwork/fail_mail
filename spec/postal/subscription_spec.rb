@@ -9,7 +9,7 @@ describe Postal::Subscription do
   let(:email) { "0409@qa.com" }
   let(:member_id) { "131297729" }
   let(:list_name) { "active-trainer2-dev" }
-  let(:member) { Postal::Member.new email }
+  let(:member) { Postal::Member.new email, 'Name' }
   let(:subscription) { Postal::Subscription.new list_name, member_id, member }
 
   describe "initialization" do
@@ -26,7 +26,7 @@ describe Postal::Subscription do
   end
 
   describe "#unsubscribe!" do
-    let(:options) { { message: { SimpleMemberStructArrayIn: { item: { :MemberID => member_id, :EmailAddress => member.email, :ListName => list_name } } } } }
+    let(:options) { { message: { SimpleMemberStructArrayIn: { item: { MemberID: member_id, EmailAddress: member.email, ListName: list_name } } } } }
     context "when the response is 1" do
       let(:xml_response) { "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:SOAP-ENC=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:ns1=\"http://tempuri.org/ns1.xsd\" xmlns:ns=\"http://www.lyris.com/lmapi\"><SOAP-ENV:Body SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><ns:UnsubscribeResponse><return xsi:type=\"xsd:int\">1</return></ns:UnsubscribeResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>" }
 
