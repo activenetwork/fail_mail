@@ -26,8 +26,8 @@ describe FailMail::Member do
 
   describe "#subscribe!" do
     let(:email) { "test@example.com" }
-    let(:list_name) { "active-trainer2-dev" }
-    let(:member_id) { "131297729" }
+    let(:list_name) { "my-awesome-list" }
+    let(:member_id) { "123456789" }
 
     context "when the member is not already on the list" do
       let(:xml_response) { %Q|<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://tempuri.org/ns1.xsd" xmlns:ns="http://www.lyris.com/lmapi"><SOAP-ENV:Body SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><ns:CreateSingleMemberResponse><return xsi:type="xsd:int">#{member_id}</return></ns:CreateSingleMemberResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>| }

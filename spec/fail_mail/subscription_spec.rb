@@ -6,18 +6,18 @@ describe FailMail::Subscription do
 
   before(:all) { savon.mock! }
   after(:all) { savon.unmock! }
-  let(:email) { "0409@qa.com" }
-  let(:member_id) { "131297729" }
-  let(:list_name) { "active-trainer2-dev" }
+  let(:email) { "test@example.com" }
+  let(:member_id) { "123456789" }
+  let(:list_name) { "my-awesome-list" }
   let(:member) { FailMail::Member.new email, 'Name' }
   let(:subscription) { FailMail::Subscription.new list_name, member_id, member }
 
   describe "initialization" do
     it "initializes with a list name" do
-      subscription.list_name.should == "active-trainer2-dev"
+      subscription.list_name.should == "my-awesome-list"
     end
     it "initializes with a member id" do
-      subscription.member_id.should == "131297729"
+      subscription.member_id.should == "123456789"
     end
 
     it "has a client" do
