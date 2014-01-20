@@ -6,14 +6,12 @@ require 'fail_mail/version'
 Gem::Specification.new do |spec|
   spec.name          = "fail_mail"
   spec.version       = FailMail::VERSION
-  s.authors          = ['Adam Zaninovich']
-  s.email            = ['adam.zaninovich@gmail.com']
-  s.homepage         = ""
-  s.summary          = %q{Lyris is an enterprise email service. FailMail makes it easy for Ruby to talk to Lyris's API.}
-  s.description      = %q{Lyris is an enterprise email service. FailMail makes it easy for Ruby to talk to Lyris's API.}
-
+  spec.authors       = ['Adam Zaninovich']
+  spec.email         = ['adam.zaninovich@gmail.com']
+  spec.homepage      = ""
+  spec.summary       = %q{Lyris is an enterprise email service. FailMail makes it easy for Ruby to talk to Lyris's API.}
+  spec.description   = %q{Lyris is an enterprise email service. FailMail makes it easy for Ruby to talk to Lyris's API.}
   spec.license       = "MIT"
-
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
