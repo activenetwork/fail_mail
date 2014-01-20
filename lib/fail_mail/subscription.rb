@@ -1,8 +1,8 @@
-module Postal
+module FailMail
   class Subscription < Base
     attr_reader :list_name, :member_id, :member
 
-    def initialize list_name, member_id, member, client=Postal.client
+    def initialize list_name, member_id, member, client=FailMail.client
       super client
       @list_name = list_name
       @member_id = member_id

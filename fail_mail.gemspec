@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'postal/version'
+require 'fail_mail/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "postal"
-  spec.version       = Postal::VERSION
+  spec.name          = "fail_mail"
+  spec.version       = FailMail::VERSION
   s.authors          = ['Adam Zaninovich']
   s.email            = ['adam.zaninovich@gmail.com']
   s.homepage         = ""
-  s.summary          = %q{Lyris is an enterprise email service. Postal makes it easy for Ruby to talk to Lyris's API.}
-  s.description      = %q{Lyris is an enterprise email service. Postal makes it easy for Ruby to talk to Lyris's API.}
+  s.summary          = %q{Lyris is an enterprise email service. FailMail makes it easy for Ruby to talk to Lyris's API.}
+  s.description      = %q{Lyris is an enterprise email service. FailMail makes it easy for Ruby to talk to Lyris's API.}
 
   spec.license       = "MIT"
 

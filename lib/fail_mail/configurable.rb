@@ -1,4 +1,4 @@
-module Postal
+module FailMail
   module Configurable
 
     def self.keys

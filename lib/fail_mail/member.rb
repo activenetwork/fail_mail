@@ -1,8 +1,8 @@
-module Postal
+module FailMail
   class Member < Base
     attr_reader :email, :name
 
-    def initialize email, name, client=Postal.client
+    def initialize email, name, client=FailMail.client
       super client
       @email = email
       @name = name
@@ -30,7 +30,7 @@ module Postal
         subscriptions.shift
         subscriptions.map do |list|
           member_id, list_name, _ = list[:item]
-          Postal::Subscription.new list_name, member_id, self
+          FailMail::Subscription.new list_name, member_id, self
         end
       end
     end
@@ -44,7 +44,7 @@ module Postal
         ListName: list_name
       }
       member_id = response.body[:create_single_member_response][:return]
-      Postal::Subscription.new list_name, member_id, self
+      FailMail::Subscription.new list_name, member_id, self
     end
 
     def subscribe_member member_id, list_name
@@ -57,7 +57,7 @@ module Postal
         }
       }
       if response.body[:update_member_status_response][:return]
-        Postal::Subscription.new list_name, member_id, self
+        FailMail::Subscription.new list_name, member_id, self
       end
     end
 

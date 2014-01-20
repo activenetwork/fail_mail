@@ -1,14 +1,14 @@
 require 'spec_helper'
 require 'savon/mock/spec_helper'
 
-describe Postal::Member do
+describe FailMail::Member do
   include Savon::SpecHelper
 
   before(:all) { savon.mock! }
   after(:all) { savon.unmock! }
   let(:email) { 'test@example.com' }
   let(:name) { 'Example User' }
-  let(:member) { Postal::Member.new email, name }
+  let(:member) { FailMail::Member.new email, name }
 
   describe "initialization" do
     it "initializes with an email" do
@@ -20,7 +20,7 @@ describe Postal::Member do
     end
 
     it "has a client" do
-      member.client.should be_a Postal::Client
+      member.client.should be_a FailMail::Client
     end
   end
 
@@ -55,7 +55,7 @@ describe Postal::Member do
   end
 
   describe "#unsubscribe!" do
-    let(:subscription) { Postal::Subscription.new 'example_list', '1234', member }
+    let(:subscription) { FailMail::Subscription.new 'example_list', '1234', member }
 
     it "calls subscriptions" do
       subscription.stub :unsubscribe!
@@ -76,7 +76,7 @@ describe Postal::Member do
 
     it "returns an array of Subscriptions" do
       savon.expects(:select_members_ex).with(options).returns xml_response
-      member.subscriptions.first.should be_a Postal::Subscription
+      member.subscriptions.first.should be_a FailMail::Subscription
     end
   end
 

@@ -1,4 +1,4 @@
 require "spec_helper"
 
-describe Postal::List do
+describe FailMail::List do
 end

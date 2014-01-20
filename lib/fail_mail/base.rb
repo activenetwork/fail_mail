@@ -1,8 +1,8 @@
-module Postal
+module FailMail
   class Base
     attr_reader :client
 
-    def initialize client=Postal.client
+    def initialize client=FailMail.client
       @client = client
     end
 

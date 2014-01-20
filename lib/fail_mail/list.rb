@@ -1,4 +1,4 @@
-module Postal
+module FailMail
   class List < Base
 
     def initialize

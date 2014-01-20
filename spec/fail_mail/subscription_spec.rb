@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'savon/mock/spec_helper'
 
-describe Postal::Subscription do
+describe FailMail::Subscription do
   include Savon::SpecHelper
 
   before(:all) { savon.mock! }
@@ -9,8 +9,8 @@ describe Postal::Subscription do
   let(:email) { "0409@qa.com" }
   let(:member_id) { "131297729" }
   let(:list_name) { "active-trainer2-dev" }
-  let(:member) { Postal::Member.new email, 'Name' }
-  let(:subscription) { Postal::Subscription.new list_name, member_id, member }
+  let(:member) { FailMail::Member.new email, 'Name' }
+  let(:subscription) { FailMail::Subscription.new list_name, member_id, member }
 
   describe "initialization" do
     it "initializes with a list name" do
@@ -21,7 +21,7 @@ describe Postal::Subscription do
     end
 
     it "has a client" do
-      subscription.client.should be_a Postal::Client
+      subscription.client.should be_a FailMail::Client
     end
   end
 

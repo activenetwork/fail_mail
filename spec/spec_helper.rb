@@ -1,3 +1,3 @@
 require 'pry'
-require 'postal'
+require 'fail_mail'
 

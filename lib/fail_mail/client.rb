@@ -1,6 +1,6 @@
 require 'savon'
 
-module Postal
+module FailMail
   class Client
     def initialize options={}
       options[:convert_request_keys_to] = :none
