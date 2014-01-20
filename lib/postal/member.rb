@@ -11,7 +11,7 @@ module Postal
     def subscribe! list_name
       create_member list_name
     rescue Savon::SOAPFault => exception
-      member_id = extract_member_id_from_exception exception
+      member_id = extract_member_id_from_exception exception.message, list_name
       subscribe_member member_id, list_name if member_id
     end
 
@@ -61,8 +61,8 @@ module Postal
       end
     end
 
-    def extract_member_id_from_exception e
-      e_list_name, e_email, member_id = e.message.scan(/'([^']*)'/).map &:first
+    def extract_member_id_from_exception message, list_name
+      e_list_name, e_email, member_id = message.scan(/'([^']*)'/).map &:first
       member_id if e_list_name == list_name && e_email == email
     end
 
