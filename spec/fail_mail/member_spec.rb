@@ -78,6 +78,15 @@ describe FailMail::Member do
       savon.expects(:select_members_ex).with(options).returns xml_response
       member.subscriptions.first.should be_a FailMail::Subscription
     end
+
+    context "when the member has no subscriptions" do
+      let(:xml_response) { %Q{<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://tempuri.org/ns1.xsd" xmlns:ns="http://www.lyris.com/lmapi"><SOAP-ENV:Body SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"><ns:SelectMembersExResponse></ns:SelectMembersExResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>} }
+      it "returns an empty array" do
+        savon.expects(:select_members_ex).with(options).returns xml_response
+        member.subscriptions.should be_empty
+      end
+    end
+
   end
 
 end

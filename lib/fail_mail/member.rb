@@ -26,7 +26,8 @@ module FailMail
           FieldsToFetch: { string: %w[MemberID ListName MemberType] },
           FilterCriteriaArray: { string: ["EmailAddress = #{email}", "MemberType = normal"] }
         }
-        subscriptions = response.body[:select_members_ex_response][:return][:item]
+        result = response.body[:select_members_ex_response] || {}
+        subscriptions = result.fetch(:return, {}).fetch(:item, [])
         subscriptions.shift
         subscriptions.map do |list|
           member_id, list_name, _ = list[:item]
