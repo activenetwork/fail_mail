@@ -24,14 +24,14 @@ module FailMail
       @subscriptions ||= begin
         response = call :select_members_ex, message: {
           FieldsToFetch: { string: %w[MemberID ListName MemberType] },
-          FilterCriteriaArray: { string: ["EmailAddress = #{email}", "MemberType = normal"] }
+          FilterCriteriaArray: { string: ["EmailAddress = #{email}"] } #, "MemberType = normal"] }
         }
         result = response.body[:select_members_ex_response] || {}
         subscriptions = result.fetch(:return, {}).fetch(:item, [])
         subscriptions.shift
         subscriptions.map do |list|
-          member_id, list_name, _ = list[:item]
-          FailMail::Subscription.new list_name, member_id, self
+          member_id, list_name, state = list[:item]
+          FailMail::Subscription.new list_name, member_id, state, self
         end
       end
     end
@@ -45,7 +45,7 @@ module FailMail
         ListName: list_name
       }
       member_id = response.body[:create_single_member_response][:return]
-      FailMail::Subscription.new list_name, member_id, self
+      FailMail::Subscription.new list_name, member_id, 'confirm', self
     end
 
     def subscribe_member member_id, list_name
@@ -58,7 +58,7 @@ module FailMail
         }
       }
       if response.body[:update_member_status_response][:return]
-        FailMail::Subscription.new list_name, member_id, self
+        FailMail::Subscription.new list_name, member_id, 'confirm', self
       end
     end
 

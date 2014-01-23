@@ -9,8 +9,9 @@ describe FailMail::Subscription do
   let(:email) { "test@example.com" }
   let(:member_id) { "123456789" }
   let(:list_name) { "my-awesome-list" }
+  let(:state) { "normal" }
   let(:member) { FailMail::Member.new email, 'Name' }
-  let(:subscription) { FailMail::Subscription.new list_name, member_id, member }
+  let(:subscription) { FailMail::Subscription.new list_name, member_id, state, member }
 
   describe "initialization" do
     it "initializes with a list name" do

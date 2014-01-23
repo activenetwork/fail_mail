@@ -1,11 +1,12 @@
 module FailMail
   class Subscription < Base
-    attr_reader :list_name, :member_id, :member
+    attr_reader :list_name, :member_id, :state, :member
 
-    def initialize list_name, member_id, member, client=FailMail.client
+    def initialize list_name, member_id, state, member, client=FailMail.client
       super client
       @list_name = list_name
       @member_id = member_id
+      @state = state
       @member = member
     end
 
